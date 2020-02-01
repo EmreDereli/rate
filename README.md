@@ -13,4 +13,5 @@ If you want to show rate, you can change App.js as following lines :
       <Rate readonly rate={3}/>
     </View>
   );
-};```
+};
+
