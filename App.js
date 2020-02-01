@@ -21,7 +21,7 @@ import Rate from './src/components/Rate';
 const App: () => React$Node = () => {
   return (
     <View style={styles.container}>
-      <Rate />
+      <Rate readonly rate={3} />
     </View>
   );
 };
