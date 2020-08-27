@@ -22,68 +22,37 @@ export default class Rate extends Component {
     }
   };
 
-  render() {
-    const {style, readonly} = this.props;
+  renderStars = () => {
+    const {readonly} = this.props;
     const {rate} = this.state;
+    let stars = [];
+    for (let i = 0; i < 5; i++) {
+      const star = (
+        <TouchableOpacity
+          key={i}
+          disabled={!!readonly}
+          onPress={() => this.onPressRate(i + 1)}
+          style={styles.rate}>
+          <Icons
+            name="star"
+            solid={rate > i ? true : false}
+            size={20}
+            color={rate > i ? 'yellow' : '#000'}
+          />
+        </TouchableOpacity>
+      );
+      stars.push(star);
+    }
+
+    return stars;
+  };
+
+  render() {
+    const {style} = this.props;
+
     return (
       <View>
-        <View style={[styles.rateView, style]}>
-          <TouchableOpacity
-            disabled={!!readonly}
-            onPress={() => this.onPressRate(1)}
-            style={styles.rate}>
-            <Icons
-              name="star"
-              solid={rate > 0 ? true : false}
-              size={20}
-              color={rate > 0 ? 'yellow' : '#000'}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            disabled={!!readonly}
-            onPress={() => this.onPressRate(2)}
-            style={styles.rate}>
-            <Icons
-              name="star"
-              solid={rate > 1 ? true : false}
-              size={20}
-              color={rate > 1 ? 'yellow' : '#000'}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            disabled={!!readonly}
-            onPress={() => this.onPressRate(3)}
-            style={styles.rate}>
-            <Icons
-              name="star"
-              solid={rate > 2 ? true : false}
-              size={20}
-              color={rate > 2 ? 'yellow' : '#000'}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            disabled={!!readonly}
-            onPress={() => this.onPressRate(4)}
-            style={styles.rate}>
-            <Icons
-              name="star"
-              solid={rate > 3 ? true : false}
-              size={20}
-              color={rate > 3 ? 'yellow' : '#000'}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            disabled={!!readonly}
-            onPress={() => this.onPressRate(5)}
-            style={styles.rate}>
-            <Icons
-              name="star"
-              solid={rate > 4 ? true : false}
-              size={20}
-              color={rate > 4 ? 'yellow' : '#000'}
-            />
-          </TouchableOpacity>
-        </View>
+        <View style={[styles.rateView, style]}>{this.renderStars()}</View>
       </View>
     );
   }
